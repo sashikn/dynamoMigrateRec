@@ -56,7 +56,7 @@ let getAllRules = async () => {
 
 let init = async () => {
 
-    let data = await getAllRules();d
+    let data = await getAllRules();
     await deleteData(data.Items);
 
 }
