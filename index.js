@@ -37,6 +37,8 @@ convertDataToNewStructure = (ruleList) => {
                     .sort((a, b) => {
                         return a.index > b.index ? 1 : -1;
                     });
+
+                let jOp = null;
                 for (let j = 0; j < rule.recommendationToolRuleList.length; j++) {
                     const ru = rule.recommendationToolRuleList[j];
                     let obj = {};
@@ -44,9 +46,10 @@ convertDataToNewStructure = (ruleList) => {
                     obj.operands = [];
                     obj.deleted = ru.deleted;
                     obj.index = ru.index;
-                    obj.joinOperator = ru.joinOperator;
+                    obj.joinOperator = jOp;
                     obj.rule = { ...ru };
                     rule.operands.push(obj);
+                    jOp = ru.joinOperator;
                 }
             }
 
