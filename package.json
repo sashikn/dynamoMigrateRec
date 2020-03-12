@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sashikn/dynamoMigrateRec/issues"
   },
-  "homepage": "https://github.com/sashikn/dynamoMigrateRec#readme"
+  "homepage": "https://github.com/sashikn/dynamoMigrateRec#readme",
+  "dependencies": {
+    "aws-sdk": "^2.638.0"
+  }
 }
