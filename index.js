@@ -51,7 +51,7 @@ convertDataToNewStructure = (ruleList) => {
                     rule.operands.push(obj);
                     jOp = ru.joinOperator;
                     if(!ru.joinOperator){
-                        jOp = "OP";
+                        jOp = "OR";
                     }
                     
                 }
