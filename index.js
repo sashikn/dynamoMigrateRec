@@ -29,30 +29,32 @@ convertDataToNewStructure = (ruleList) => {
 
         for (let i = 0; i < ruleList.length; i++) {
             const rule = ruleList[i];
-            rule.recommendationToolRuleList = rule.recommendationToolRuleList
-                .sort((a, b) => {
-                    return a.index > b.index ? 1 : -1;
-                });
-
-
             rule.operands = [];
 
-            for (let j = 0; j < rule.recommendationToolRuleList.length; j++) {
-                const ru = rule.recommendationToolRuleList[j];
-                let obj = {};
-                obj.depth = 0;
-                obj.operands = [];
-                obj.deleted = ru.deleted;
-                obj.index = ru.index;
-                obj.joinOperator = ru.joinOperator;
-                obj.rule = { ...ru };
-                rule.operands.push(obj);
+
+            if (rule.recommendationToolRuleList && rule.recommendationToolRuleList.length > 0) {
+                rule.recommendationToolRuleList = rule.recommendationToolRuleList
+                    .sort((a, b) => {
+                        return a.index > b.index ? 1 : -1;
+                    });
+                for (let j = 0; j < rule.recommendationToolRuleList.length; j++) {
+                    const ru = rule.recommendationToolRuleList[j];
+                    let obj = {};
+                    obj.depth = 0;
+                    obj.operands = [];
+                    obj.deleted = ru.deleted;
+                    obj.index = ru.index;
+                    obj.joinOperator = ru.joinOperator;
+                    obj.rule = { ...ru };
+                    rule.operands.push(obj);
+                }
             }
+
 
             rule.recommendationToolRuleList = null;
         }
 
-        console.log("Convert Data List : ", JSON.stringify(ruleList));
+        console.log("Convert Data List : ", (ruleList));
 
         return ruleList;
     } catch (error) {
