@@ -65,11 +65,35 @@ convertDataToNewStructure = (ruleList) => {
 
 
 
+let insertToNewTable = async (ruleList) => {
+    try {
+        
+        for (let i = 0; i < ruleList.length; i++) {
+            const rule = ruleList[i];
+            let params = {
+                TableName: config.DYNAMO_NESTED_TABLE_NAME,
+                Item: rule
+            }
+
+            let data = await dynamoDBClient.put(params).promise();
+
+
+            console.log("Put an Item : ", data);
+        }
+    } catch (error) {
+        console.log("Put error : ", error);
+    }
+}
+
+
+
 
 let init = async () => {
     let data = await getAllRules();
 
     let ruleList = convertDataToNewStructure(data.Items);
+
+    insertToNewTable(ruleList);
 
 }
 
