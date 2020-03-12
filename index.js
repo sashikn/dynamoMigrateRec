@@ -10,7 +10,7 @@ let getAllRules = async () => {
         }
 
         let data = await dynamoDBClient.scan(params).promise();
-        console.log("Get Rules data : ", JSON.stringify(data));
+        console.log("Get Rules data : ", (data));
 
         return data;
     } catch (error) {
