@@ -41,19 +41,21 @@ convertDataToNewStructure = (ruleList) => {
                 let jOp = null;
                 for (let j = 0; j < rule.recommendationToolRuleList.length; j++) {
                     const ru = rule.recommendationToolRuleList[j];
-                    let obj = {};
-                    obj.depth = 0;
-                    obj.operands = [];
-                    obj.deleted = ru.deleted;
-                    obj.index = ru.index;
-                    obj.joinOperator = jOp;
-                    obj.rule = { ...ru };
-                    rule.operands.push(obj);
-                    jOp = ru.joinOperator;
-                    if(!ru.joinOperator){
-                        jOp = "OR";
+
+                    if (!(ru.deleted || ru.deleted === "true")) {
+                        let obj = {};
+                        obj.depth = 0;
+                        obj.operands = [];
+                        obj.deleted = ru.deleted;
+                        obj.index = ru.index;
+                        obj.joinOperator = jOp;
+                        obj.rule = { ...ru };
+                        rule.operands.push(obj);
+                        jOp = ru.joinOperator;
+                        if (!ru.joinOperator) {
+                            jOp = "OR";
+                        }
                     }
-                    
                 }
             }
 
@@ -74,7 +76,7 @@ convertDataToNewStructure = (ruleList) => {
 
 let insertToNewTable = async (ruleList) => {
     try {
-        
+
         for (let i = 0; i < ruleList.length; i++) {
             const rule = ruleList[i];
             let params = {
