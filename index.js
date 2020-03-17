@@ -52,7 +52,7 @@ let evaluteOldRules = async (items) => {
 
         let data = await axios.post("https://recqry.rec.stg-tvlk.cloud/v1/recommendation/query", postData);
 
-        let ress = JSON.stringify(data);
+        let ress = JSON.stringify(data.data);
 
         console.log(" evaluate old rules data  : " + ress);
 
