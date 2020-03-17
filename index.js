@@ -1,6 +1,8 @@
 const config = require("./config");
 let dynamoDBClient = require("./dynamoDBClient");
 
+import axios from axios;
+
 
 
 let getAllRules = async () => {
@@ -20,6 +22,38 @@ let getAllRules = async () => {
             Count: 0,
             ScannedCount: 0
         }
+    }
+}
+
+
+let evaluteOldRules =async  (items) => {
+    try {
+
+        let postData = {
+            id: 0,
+            method: "getUserEntityValues",
+            params: [{
+                profileId: "10253381",
+                entityDefinitionIds: []
+            }]
+        };
+
+
+        for (let i = 0; i < items.length; i++) {
+            const rule = items[i];
+            postData.params.entityDefinitionIds.push(rule.id.toString());
+        }
+
+
+
+        let data =  await axios.post("https://recqry.rec.stg-tvlk.cloud/v1/recommendation/query", postData);
+
+        console.log(" evaluate old rules data  : "+data);
+
+
+    } catch (error) {
+
+        console.log("error evalute old rules : ", error);
     }
 }
 

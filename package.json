@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sashikn/dynamoMigrateRec#readme",
   "dependencies": {
-    "aws-sdk": "^2.638.0"
+    "aws-sdk": "^2.638.0",
+    "axios": "^0.19.2"
   }
 }
