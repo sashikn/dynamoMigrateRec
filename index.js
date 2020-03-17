@@ -1,7 +1,7 @@
 const config = require("./config");
 let dynamoDBClient = require("./dynamoDBClient");
 
-import axios from axios;
+let axios = require("axios");
 
 
 
