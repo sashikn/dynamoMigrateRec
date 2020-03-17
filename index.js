@@ -26,29 +26,33 @@ let getAllRules = async () => {
 }
 
 
-let evaluteOldRules =async  (items) => {
+let evaluteOldRules = async (items) => {
     try {
+
+
+
+        let ids = []
+
+
+        for (let i = 0; i < items.length; i++) {
+            const rule = items[i];
+            ids.push(rule.id.toString());
+        }
+
 
         let postData = {
             id: 0,
             method: "getUserEntityValues",
             params: [{
                 profileId: "10253381",
-                entityDefinitionIds: []
+                entityDefinitionIds: ids
             }]
         };
 
 
-        for (let i = 0; i < items.length; i++) {
-            const rule = items[i];
-            postData.params.entityDefinitionIds.push(rule.id.toString());
-        }
+        let data = await axios.post("https://recqry.rec.stg-tvlk.cloud/v1/recommendation/query", postData);
 
-
-
-        let data =  await axios.post("https://recqry.rec.stg-tvlk.cloud/v1/recommendation/query", postData);
-
-        console.log(" evaluate old rules data  : "+data);
+        console.log(" evaluate old rules data  : " + data);
 
 
     } catch (error) {
@@ -138,7 +142,7 @@ let init = async () => {
 
     //let ruleList = convertDataToNewStructure(data.Items);
 
-   // insertToNewTable(ruleList);
+    // insertToNewTable(ruleList);
 
 }
 
