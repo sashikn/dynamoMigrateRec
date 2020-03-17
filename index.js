@@ -140,11 +140,14 @@ let insertToNewTable = async (ruleList) => {
 let init = async () => {
     let data = await getAllRules();
 
-    let da = await evaluteOldRules(data.Items);
+    ;
 
-    //let ruleList = convertDataToNewStructure(data.Items);
+    let ruleList = convertDataToNewStructure(data.Items);
 
-    // insertToNewTable(ruleList);
+     insertToNewTable(ruleList);
+
+
+     let da = await evaluteOldRules(data.Items)
 
 }
 
