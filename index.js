@@ -141,7 +141,7 @@ let updateOldTable = async (ruleList) => {
         for (let i = 0; i < ruleList.length; i++) {
             const rule = ruleList[i];
             let params = {
-                TableName: config.DYNAMO_NESTED_TABLE_NAME,
+                TableName: config.DYNAMO_TABLE_NAME,
                 Key: { id: rule.id },
                 UpdateExpression: "set operands = :r",
                 ExpressionAttributeValues: {
