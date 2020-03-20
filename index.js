@@ -167,14 +167,14 @@ let init = async () => {
 
     ;
 
-     let ruleList = convertDataToNewStructure(data.Items);
+     //let ruleList = convertDataToNewStructure(data.Items);
 
-     updateOldTable(ruleList);
+    // updateOldTable(ruleList);
 
     //  insertToNewTable(ruleList);
 
 
-  // let da = await evaluteOldRules(data.Items)
+   let da = await evaluteOldRules(data.Items)
 
 }
 
