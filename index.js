@@ -135,6 +135,31 @@ let insertToNewTable = async (ruleList) => {
 }
 
 
+let updateOldTable = async (ruleList) => {
+    try {
+
+        for (let i = 0; i < ruleList.length; i++) {
+            const rule = ruleList[i];
+            let params = {
+                TableName: config.DYNAMO_NESTED_TABLE_NAME,
+                Key: { id: rule.id },
+                UpdateExpression: "set operands = :r",
+                ExpressionAttributeValues: {
+                    ":r": rule.operands,
+                    
+                },
+            }
+
+            let data = await dynamoDBClient.update(params).promise();
+
+
+            console.log("Put an Item : ", data);
+        }
+    } catch (error) {
+        console.log("Put error : ", error);
+    }
+}
+
 
 
 let init = async () => {
@@ -142,12 +167,14 @@ let init = async () => {
 
     ;
 
-    // let ruleList = convertDataToNewStructure(data.Items);
+     let ruleList = convertDataToNewStructure(data.Items);
+
+     updateOldTable(ruleList);
 
     //  insertToNewTable(ruleList);
 
 
-     let da = await evaluteOldRules(data.Items)
+  // let da = await evaluteOldRules(data.Items)
 
 }
 
