@@ -143,11 +143,11 @@ let updateOldTable = async (ruleList) => {
             let params = {
                 TableName: config.DYNAMO_TABLE_NAME,
                 Key: { id: rule.id },
-                UpdateExpression: "set operands = :r",
-                ExpressionAttributeValues: {
-                    ":r": rule.operands,
+                UpdateExpression: "remove operands",
+                // ExpressionAttributeValues: {
+                //     ":r": null,
                     
-                },
+                // },
             }
 
             let data = await dynamoDBClient.update(params).promise();
@@ -169,7 +169,7 @@ let init = async () => {
 
      //let ruleList = convertDataToNewStructure(data.Items);
 
-    // updateOldTable(ruleList);
+     updateOldTable(ruleList);
 
     //  insertToNewTable(ruleList);
 
