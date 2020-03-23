@@ -169,7 +169,7 @@ let init = async () => {
 
      //let ruleList = convertDataToNewStructure(data.Items);
 
-     updateOldTable(ruleList);
+     updateOldTable(data.Items);
 
     //  insertToNewTable(ruleList);
 
