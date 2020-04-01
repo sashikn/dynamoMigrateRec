@@ -26,42 +26,7 @@ let getAllRules = async () => {
 }
 
 
-let evaluteOldRules = async (items) => {
-    try {
 
-
-
-        let ids = []
-
-
-        for (let i = 0; i < items.length; i++) {
-            const rule = items[i];
-            ids.push(rule.id.toString());
-        }
-
-
-        let postData = {
-            id: 0,
-            method: "getUserEntityValues",
-            params: [{
-                profileId: "10253381",
-                entityDefinitionIds: ids
-            }]
-        };
-
-
-        let data = await axios.post("https://recqry.rec.stg-tvlk.cloud/v1/recommendation/query", postData);
-
-        let ress = JSON.stringify(data.data);
-
-        console.log(" evaluate old rules data  : " + ress);
-
-
-    } catch (error) {
-
-        console.log("error evalute old rules : ", error);
-    }
-}
 
 
 convertDataToNewStructure = (ruleList) => {
@@ -135,46 +100,20 @@ let insertToNewTable = async (ruleList) => {
 }
 
 
-let updateOldTable = async (ruleList) => {
-    try {
 
-        for (let i = 0; i < ruleList.length; i++) {
-            const rule = ruleList[i];
-            let params = {
-                TableName: config.DYNAMO_TABLE_NAME,
-                Key: { id: rule.id },
-                UpdateExpression: "remove operands",
-                // ExpressionAttributeValues: {
-                //     ":r": null,
-                    
-                // },
-            }
-
-            let data = await dynamoDBClient.update(params).promise();
-
-
-            console.log("Put an Item : ", data);
-        }
-    } catch (error) {
-        console.log("Put error : ", error);
-    }
-}
 
 
 
 let init = async () => {
     let data = await getAllRules();
 
-    ;
+    
 
-     //let ruleList = convertDataToNewStructure(data.Items);
+    let ruleList = convertDataToNewStructure(data.Items);
 
-     updateOldTable(data.Items);
+     
 
-    //  insertToNewTable(ruleList);
-
-
-   let da = await evaluteOldRules(data.Items)
+     insertToNewTable(ruleList);
 
 }
 
