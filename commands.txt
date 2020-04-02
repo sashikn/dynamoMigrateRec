@@ -1,0 +1,54 @@
+
+
+bash
+
+sudo su - ubuntu
+
+cd ~
+curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
+
+
+
+sudo bash nodesource_setup.sh
+
+
+sudo apt-get install -y nodejs
+
+sudo apt-get install git
+
+
+
+cd ~
+
+git clone https://github.com/sashikn/dynamoMigrateRec.git
+
+cd /home/ubuntu/dynamoMigrateRec
+
+npm install
+
+
+## migrating the rules to new db
+node index.js
+
+
+## delete all the rules that are migrated in previous method
+node delete.js
+
+
+## no need to execute this ###
+# sudo apt install redis-tools
+
+# redis-cli -c -h recdata-ne-app-39d2.gwof26.clustercfg.apse1.cache.amazonaws.com -p 6379
+
+# keys *
+
+# flushall
+
+
+
+
+
+
+
+
+
