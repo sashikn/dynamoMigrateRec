@@ -35,7 +35,7 @@ node index.js
 node delete.js
 
 
-## no need to execute this ###
+-- no need to execute this ------
 # sudo apt install redis-tools
 
 # redis-cli -c -h recdata-ne-app-39d2.gwof26.clustercfg.apse1.cache.amazonaws.com -p 6379
@@ -43,6 +43,8 @@ node delete.js
 # keys *
 
 # flushall
+
+
 
 
 
